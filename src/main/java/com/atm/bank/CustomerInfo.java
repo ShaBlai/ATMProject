@@ -6,19 +6,21 @@ import java.math.BigDecimal;
  class CustomerInfo {
 
      //fields for the customer's info in the bank
-    private Integer customerCardNumber;
+    private int customerCardNumber;
     private String customerUserName;
     private String customerFirstName;
     private String customerLastName;
-    private Integer customerPin;
-    private Double customerCheckingBalance;
-    private Double customerSavingsBalance;
-    private Integer customerAccountNumber;
+    private int customerPin;
+    private double customerCheckingBalance;
+    private double customerSavingsBalance;
+    private int customerAccountNumber;
 
 
 
     //constructor for building the customer's information in List "Database"
-    public CustomerInfo(Integer customerCardNumber, String customerUserName, String customerFirstName, String customerLastName, Integer customerPin, Double customerCheckingBalance, Double customerSavingsBalance, Integer customerAccountNumber) {
+    public CustomerInfo(int customerCardNumber, String customerUserName, String customerFirstName,
+                        String customerLastName, int customerPin, double customerCheckingBalance,
+                        double customerSavingsBalance, int customerAccountNumber) {
         this.customerCardNumber = customerCardNumber;
         this.customerUserName = customerUserName;
         this.customerFirstName = customerFirstName;
@@ -29,6 +31,21 @@ import java.math.BigDecimal;
         this.customerAccountNumber = customerAccountNumber;
     }
 
+    public boolean validateCardNumber(int userCard) {
+        if(userCard != getCustomerCardNumber()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean validatePin(int userPin) {
+        if(userPin != getCustomerPin()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 
     //getters and setters
@@ -48,7 +65,7 @@ import java.math.BigDecimal;
         this.customerUserName = customerUserName;
     }
 
-    public Integer getCustomerPin() {
+    public int getCustomerPin() {
         return customerPin;
     }
 
@@ -56,7 +73,7 @@ import java.math.BigDecimal;
         this.customerPin = customerPin;
     }
 
-    public Integer getCustomerAccountNumber() {
+    public int getCustomerAccountNumber() {
         return customerAccountNumber;
     }
 

@@ -68,6 +68,9 @@ public class ATMClient extends Bank {
                 } else {
                     System.out.println();
                 }
+                break;
+            case 5:
+                System.out.println();
 
 
         }
