@@ -21,6 +21,8 @@ public class Bank {
         return userData;
     }
 
+    pub
+
     //method in case the user inputs the incorrect username to their account
     public CustomerInfo nullCustomerUserName (String customerUserName) throws IllegalArgumentException {
 
