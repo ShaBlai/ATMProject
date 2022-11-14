@@ -1,4 +1,4 @@
-package client;
+package com.atm.client;
 
 
 import com.bank.Bank;

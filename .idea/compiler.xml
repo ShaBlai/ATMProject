@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="com.CamShaJuan.ATM" />
         <module name="com.Team2.ATM" />
+        <module name="ATMProject" />
       </profile>
     </annotationProcessing>
   </component>
