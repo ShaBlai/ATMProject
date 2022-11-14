@@ -8,18 +8,36 @@ public class Bank {
     //list created as a database to reference their bank information
     private List<CustomerInfo> userData = Arrays.asList(
             //customer's information attached to their account
-            new CustomerInfo(1234, "Blairy", "Shawn",
-                    "Blair", 1010, .99, 12.34, 1111),
-            new CustomerInfo(6969, "Camo", "Cameron",
-                    "Davis", 1234, 9936.89, 12000.34, 2222),
-            new CustomerInfo(4321, "TheJuan", "Juan",
-                    "Cruz", 0101, 12000.43, 225203.43, 3333)
+            new CustomerInfo("1234", "Blairy", "Shawn",
+                    "Blair", "1010", .99, 12.34, 1111),
+            new CustomerInfo("6969", "Camo", "Cameron",
+                    "Davis", "1234", 9936.89, 12000.34, 2222),
+            new CustomerInfo("4321", "TheJuan", "Juan",
+                    "Cruz", "0101", 12000.43, 225203.43, 3333)
 
     );
+
+    public boolean verifyLoginClientInfo(String providedCardNumber, String providedPinNumber) {
+        boolean verificationBoolean = false;
+        for (CustomerInfo customer : userData) {
+            if (customer.getCustomerCardNumber().equals(providedCardNumber) && customer.getCustomerPin().equals(providedPinNumber)) {
+                System.out.println("Card Number & Pin verification passed.");
+                verificationBoolean = true;
+            }
+        }
+
+        if (!verificationBoolean) {
+            System.out.println("Incorrect card number and/or pin entered.");
+        }
+
+        return verificationBoolean;
+    }
+
 
     public List<CustomerInfo> getUserData() {
         return userData;
     }
+
 
 
     //method in case the user inputs the incorrect username to their account
@@ -49,5 +67,6 @@ public class Bank {
         return null;
 
     }
+
 
 }

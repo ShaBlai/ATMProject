@@ -1,7 +1,8 @@
 package com.atm.client;
 
 import com.atm.bank.Bank;
-import com.atm.bank.CustomerInfo;
+//import com.atm.bank.CustomerInfo;
+//import com.atm.bank.CustomerInfo;
 
 import java.util.List;
 import java.util.Scanner;
@@ -10,30 +11,39 @@ public class loginClient {
 
     private static String cardNumberUserProvided;
     private static String pinNumberUserProvided;
+    private static boolean verifyUserInfoBoolean;
 
-    public boolean verifyUserInfo(String cardNumberUserProvided, String pinNumberUserProvided) {
+    public static boolean passUserInfoToBankForVerification(String cardNumberUserProvided, String pinNumberUserProvided) {
+
+        verifyUserInfoBoolean = false;
 
         Bank bank = new Bank();
+        boolean banksVerificationCheck = bank.verifyLoginClientInfo(cardNumberUserProvided, pinNumberUserProvided);
 
-        if ()
+        if (banksVerificationCheck) {
+            verifyUserInfoBoolean = true;
+            //add logic to call ATMClient
+        }
 
-        return true;
+        return verifyUserInfoBoolean;
     }
-
 
 
     public static void main(String[] args) {
 
         Scanner myObj = new Scanner(System.in);
 
-        System.out.println("Please enter your 4 digit card number: ");
-        cardNumberUserProvided = myObj.nextLine();
+        do {
+            System.out.println("Please enter your 4 digit card number: ");
+            cardNumberUserProvided = myObj.nextLine();
 
-        System.out.println("Please enter your 4 digit pin: ");
-        pinNumberUserProvided = myObj.nextLine();
+            System.out.println("Please enter your 4 digit pin: ");
+            pinNumberUserProvided = myObj.nextLine();
 
-        System.out.println(cardNumberUserProvided + ", " + pinNumberUserProvided);
+            System.out.println(cardNumberUserProvided + ", " + pinNumberUserProvided);
 
+            verifyUserInfoBoolean = passUserInfoToBankForVerification(cardNumberUserProvided, pinNumberUserProvided);
+        } while (!verifyUserInfoBoolean);
 
 
         //        boolean checkCardNumberIsFourDigits = false;
