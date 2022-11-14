@@ -1,4 +1,4 @@
-package com.bank;
+package com.atm.bank;
 
 import java.util.Arrays;
 import java.util.List;
