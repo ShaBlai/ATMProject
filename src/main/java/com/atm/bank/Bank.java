@@ -21,7 +21,7 @@ public class Bank {
         boolean verificationBoolean = false;
         for (CustomerInfo customer : userData) {
             if (customer.getCustomerCardNumber().equals(providedCardNumber) && customer.getCustomerPin().equals(providedPinNumber)) {
-                System.out.println("Card Number & Pin verification passed.");
+                System.out.println("Card number & pin verification passed.");
                 verificationBoolean = true;
             }
         }

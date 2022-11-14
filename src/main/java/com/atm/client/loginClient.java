@@ -13,7 +13,7 @@ public class loginClient {
     private static String pinNumberUserProvided;
     private static boolean verifyUserInfoBoolean;
 
-    public static boolean passUserInfoToBankForVerification(String cardNumberUserProvided, String pinNumberUserProvided) {
+    private static boolean passUserInfoToBankForVerification(String cardNumberUserProvided, String pinNumberUserProvided) {
 
         verifyUserInfoBoolean = false;
 
@@ -40,7 +40,7 @@ public class loginClient {
             System.out.println("Please enter your 4 digit pin: ");
             pinNumberUserProvided = myObj.nextLine();
 
-            System.out.println(cardNumberUserProvided + ", " + pinNumberUserProvided);
+            System.out.println("You provided card number: " + cardNumberUserProvided + "\nYou provided pin number: " + pinNumberUserProvided);
 
             verifyUserInfoBoolean = passUserInfoToBankForVerification(cardNumberUserProvided, pinNumberUserProvided);
         } while (!verifyUserInfoBoolean);

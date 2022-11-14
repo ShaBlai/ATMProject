@@ -26,53 +26,53 @@ public class ATMClient extends Bank {
 
 
 
-    while(true)
-
-    {
-        System.out.println("Select " + Withdrawal + " to withdraw");
-        System.out.println("Select " + Deposit + " to deposit");
-        System.out.println("Select " + Balance_Inquiry + " to check balance inquiry");
-        System.out.println("Select " + Transfer + " to transfer funds");
-        System.out.println("Select " + Checking + " to check checking");
-        System.out.println("select " + savings + "to check savings");
-        System.out.println("Select " + Exit + "to Exit");
-        int options = scan.nextInt();
-
-        switch (options) {
-            case 1:
-                System.out.println("Enter amount you would like to withdraw");
-                double withdraw = scan.nextDouble();
-                if (balance >= withdraw) {
-                    balance -= withdraw;
-                } else {
-                    System.out.println("Insufficient Balance");
-                }
-                break;
-
-            case 2:
-                System.out.println("Enter the amount you want to deposit");
-                double deposit = scan.nextDouble();
-                balance += deposit;
-                System.out.println("Deposit successful your current balance is " + balance);
-                break;
-
-            case 3:
-                System.out.println("Balance: " + balance);
-                break;
-
-            case 4:
-                System.out.println("Choose bank account type: ");
-                if (options == Checking) {
-                    System.out.println("select amount you would like to transfer:");
-                    double transferAmount = scan.nextDouble();
-                } else {
-                    System.out.println();
-                }
-                break;
-            case 5:
-                System.out.println();
-
-
-        }
-    }
+//    while(true)
+//
+//    {
+//        System.out.println("Select " + Withdrawal + " to withdraw");
+//        System.out.println("Select " + Deposit + " to deposit");
+//        System.out.println("Select " + Balance_Inquiry + " to check balance inquiry");
+//        System.out.println("Select " + Transfer + " to transfer funds");
+//        System.out.println("Select " + Checking + " to check checking");
+//        System.out.println("select " + savings + "to check savings");
+//        System.out.println("Select " + Exit + "to Exit");
+//        int options = scan.nextInt();
+//
+//        switch (options) {
+//            case 1:
+//                System.out.println("Enter amount you would like to withdraw");
+//                double withdraw = scan.nextDouble();
+//                if (balance >= withdraw) {
+//                    balance -= withdraw;
+//                } else {
+//                    System.out.println("Insufficient Balance");
+//                }
+//                break;
+//
+//            case 2:
+//                System.out.println("Enter the amount you want to deposit");
+//                double deposit = scan.nextDouble();
+//                balance += deposit;
+//                System.out.println("Deposit successful your current balance is " + balance);
+//                break;
+//
+//            case 3:
+//                System.out.println("Balance: " + balance);
+//                break;
+//
+//            case 4:
+//                System.out.println("Choose bank account type: ");
+//                if (options == Checking) {
+//                    System.out.println("select amount you would like to transfer:");
+//                    double transferAmount = scan.nextDouble();
+//                } else {
+//                    System.out.println();
+//                }
+//                break;
+//            case 5:
+//                System.out.println();
+//
+//
+//        }
+//    }
 }
