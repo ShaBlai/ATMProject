@@ -23,6 +23,7 @@ public class loginClient {
         if (banksVerificationCheck) {
             verifyUserInfoBoolean = true;
             //add logic to call ATMClient
+            ATm new ATMClient();
         }
 
         return verifyUserInfoBoolean;
@@ -44,6 +45,9 @@ public class loginClient {
 
             verifyUserInfoBoolean = passUserInfoToBankForVerification(cardNumberUserProvided, pinNumberUserProvided);
         } while (!verifyUserInfoBoolean);
+
+
+
 
 
         //        boolean checkCardNumberIsFourDigits = false;
