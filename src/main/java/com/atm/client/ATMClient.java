@@ -18,11 +18,9 @@ public class ATMClient {
 
     private static double balance ;
 
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
+    Scanner scan = new Scanner(System.in);
 
-
-
+    public void runMenu() {
         while(true) {
             System.out.println("Select " + Withdrawal + " to withdraw");
             System.out.println("Select " + Deposit + " to deposit");
@@ -71,6 +69,5 @@ public class ATMClient {
 
             }
         }
-
     }
 }

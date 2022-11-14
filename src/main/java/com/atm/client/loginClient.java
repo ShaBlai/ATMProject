@@ -23,7 +23,8 @@ public class loginClient {
         if (banksVerificationCheck) {
             verifyUserInfoBoolean = true;
             //add logic to call ATMClient
-            ATm new ATMClient();
+            ATMClient atm = new ATMClient();
+
         }
 
         return verifyUserInfoBoolean;
