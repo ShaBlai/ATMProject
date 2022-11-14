@@ -66,7 +66,7 @@ public class ATMClient extends Bank {
                     System.out.println("select amount you would like to transfer:");
                     double transferAmount = scan.nextDouble();
                 } else {
-
+                    System.out.println();
                 }
 
 
