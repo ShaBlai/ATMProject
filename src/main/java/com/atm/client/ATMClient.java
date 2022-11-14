@@ -1,7 +1,7 @@
-package client;
+package com.atm.client;
 
 
-import com.bank.Bank;
+import com.atm.bank.Bank;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package atm_transaction;
+package com.atm.client;
 import java.util.Scanner;
 
 public class loginClient {
