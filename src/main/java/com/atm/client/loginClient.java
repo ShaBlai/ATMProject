@@ -1,10 +1,10 @@
 package com.atm.client;
 
+import com.atm.bank.ATM;
 import com.atm.bank.Bank;
 //import com.atm.bank.CustomerInfo;
 //import com.atm.bank.CustomerInfo;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class loginClient {
@@ -23,8 +23,8 @@ public class loginClient {
         if (banksVerificationCheck) {
             verifyUserInfoBoolean = true;
             //add logic to call ATMClient
-            ATMClient atm = new ATMClient();
-
+            ATM atm = new ATM();
+            atm.runMenu();
         }
 
         return verifyUserInfoBoolean;

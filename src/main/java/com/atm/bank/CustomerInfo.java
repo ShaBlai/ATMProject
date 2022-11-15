@@ -28,6 +28,10 @@ class CustomerInfo {
         this.customerAccountNumber = customerAccountNumber;
     }
 
+    public CustomerInfo() {
+
+    }
+
 //    public boolean validateCardNumber(int userCard) {
 //        if(userCard != getCustomerCardNumber()) {
 //            return false;

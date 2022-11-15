@@ -1,11 +1,15 @@
-package com.atm.client;
+package com.atm.bank;
 
 
 import com.atm.bank.Bank;
+import com.atm.bank.CustomerInfo;
 
+import java.beans.Customizer;
+import java.util.List;
 import java.util.Scanner;
+import java.util.SortedMap;
 
-public class ATMClient {
+public class ATM extends Bank {
 
 
     private static final int Withdrawal = 1;
@@ -13,27 +17,41 @@ public class ATMClient {
     private static final int Balance_Inquiry = 3;
     private static final int Transfer = 4;
     private static final int Checking = 5;
-    private static final int savings = 6;
+    private static final int Savings = 6;
     private static final int Exit = 7;
 
-    private static double balance ;
+    private static double balance;
 
     Scanner scan = new Scanner(System.in);
 
     public void runMenu() {
-        while(true) {
+        while (true) {
             System.out.println("Select " + Withdrawal + " to withdraw");
             System.out.println("Select " + Deposit + " to deposit");
             System.out.println("Select " + Balance_Inquiry + " to check balance inquiry");
             System.out.println("Select " + Transfer + " to transfer funds");
-            System.out.println("Select " + Checking + " to check checking");
-            System.out.println("select " + savings + "to check savings");
-            System.out.println("Select " + Exit + "to Exit");
+            System.out.println("Select " + Checking + " to for checking");
+            System.out.println("select " + Savings + " to for savings");
+            System.out.println("Select " + Exit + " to Exit");
             int options = scan.nextInt();
 
             switch (options) {
                 case 1:
-                    System.out.println("Enter amount you would like to withdraw");
+                    System.out.println("Would you like to withdraw " +
+                            "from Savings enter: "+Savings+ " or Checking enter: " +Checking);
+//                    int savings = scan.nextInt();
+//                    int checking = scan.nextInt();
+                    if(scan.nextInt() == Savings) {
+                        System.out.println("Enter amount you would like to withdraw from savings");
+                        CustomerInfo customerInfo = new CustomerInfo();
+                        withdraw(customerInfo.getCustomerSavingsBalance());
+                    }
+                    else if (scan.nextInt() == Checking) {
+                        System.out.println("Enter amount you would like to withdraw from checking");
+                        CustomerInfo customerInfo = new CustomerInfo();
+                        withdraw(customerInfo.getCustomerCheckingBalance());
+                    }
+
                     double withdraw = scan.nextDouble();
                     if (balance >= withdraw) {
                         balance -= withdraw;
@@ -63,11 +81,13 @@ public class ATMClient {
                         System.out.println();
                     }
                     break;
-                case 5:
-                    System.out.println();
+                case 7:
+                    System.exit(0);
 
 
             }
         }
     }
+
 }
+

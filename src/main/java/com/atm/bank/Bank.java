@@ -33,6 +33,23 @@ public class Bank {
         return verificationBoolean;
     }
 
+//
+//    public boolean userAccount() {
+//
+//    }
+
+    public void withdraw (double balance) {
+
+        for(CustomerInfo customer : userData) {
+            if(customer.getCustomerCheckingBalance().equals(balance)) {
+                System.out.println(customer);
+            }
+            if(customer.getCustomerSavingsBalance().equals(balance)) {
+                System.out.println(customer);
+            }
+        }
+    }
+
 
     public List<CustomerInfo> getUserData() {
         return userData;
