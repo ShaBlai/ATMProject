@@ -1,13 +1,7 @@
 package com.atm.bank;
 
 
-import com.atm.bank.Bank;
-import com.atm.bank.CustomerInfo;
-
-import java.beans.Customizer;
-import java.util.List;
 import java.util.Scanner;
-import java.util.SortedMap;
 
 public class ATM{
 
@@ -44,7 +38,7 @@ public class ATM{
                     if(scan.nextInt() == Savings) {
                         System.out.println("Enter amount you would like to withdraw from savings");
                         double amountToWithdraw = scan.nextDouble();
-                        Bank.getInstance().withdraw(cardNumberThisSession, amountToWithdraw);
+                        Bank.getInstance().withdrawFromSavings(cardNumberThisSession, amountToWithdraw);
 //                        CustomerInfo customerInfo = new CustomerInfo();
 //                        CustomerInfo customerInfo = Bank.getInstance().getUserData().get(1);
 //                        customerInfo.getCustomerSavingsBalance();

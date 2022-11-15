@@ -53,12 +53,13 @@ public class Bank {
 //
 //    }
 
-    public void withdraw (String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+    public void withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
         CustomerInfo customerInfo = correctCustomer.get(0);
+
         if (customerInfo.getCustomerSavingsBalance() >= withdrawalAmount) {
             Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
             customerSavingsBalance -= withdrawalAmount;
@@ -66,7 +67,7 @@ public class Bank {
             System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
                     "\nPlease take cash below. " +
                     "\nYour new savings account balance is: " + customerSavingsBalance);
-        }
+        } else {
 
 //        for(CustomerInfo customer : userData) {
 //            if(customer.getCustomerCheckingBalance().equals(balance)) {
