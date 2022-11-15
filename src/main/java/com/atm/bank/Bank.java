@@ -95,25 +95,55 @@ public class Bank {
     }
 
 
-        public void transferFromChecking (String cardNumberOfCorrectCustomer, double transferAmount){
+    public void transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
 
-            List<CustomerInfo> correctCustomerTransfer = userData.stream()
-                    .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                    .collect(Collectors.toList());
-            CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
+        List<CustomerInfo> correctCustomerTransfer = userData.stream()
+                .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
 
-            if (customerInfoTransfer.getCustomerCheckingBalance()>= transferAmount) {
-                Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
-                customerCheckingBalance -= transferAmount;
-            }
+        if (customerInfoTransfer.getCustomerCheckingBalance() >= transferAmount) {
+            Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
+            Double customerSavingsBalance = customerInfoTransfer.getCustomerSavingsBalance();
+
+
+            customerCheckingBalance -= transferAmount;
+            customerInfoTransfer.setCustomerCheckingBalance(customerCheckingBalance);
+
+            customerSavingsBalance += transferAmount;
+            customerInfoTransfer.setCustomerSavingsBalance(customerSavingsBalance);
+
+
+            System.out.println("You have transferred $" + transferAmount + " dollars to Savings " +
+                    "\nYour new savings account balance is: $" + customerSavingsBalance);
         }
+    }
 
 
+    public List<CustomerInfo> transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
 
-        public void transferFromSavings (String cardNumberOfCorrectCustomer, double transferAmount) {
+        List<CustomerInfo> correctCustomerTransfer = userData.stream()
+                .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
 
+        if (customerInfoTransfer.getCustomerSavingsBalance() >= transferAmount) {
+            Double customerSavingsBalance = customerInfoTransfer.getCustomerSavingsBalance();
+            Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
+
+            customerSavingsBalance -= transferAmount;
+            customerInfoTransfer.setCustomerSavingsBalance(customerSavingsBalance);
+
+            customerCheckingBalance += (transferAmount);
+            customerInfoTransfer.setCustomerCheckingBalance(customerCheckingBalance);
+
+            System.out.println("You have transferred $" + transferAmount + " dollars to Checking " +
+                    "\nYour new Checking Account balance is: $" + customerCheckingBalance);
 
         }
+        return null;
+    }
+
 
 
 

@@ -63,7 +63,7 @@ public class ATM {
                     break;
 
                 case 4:
-                    System.out.println("Choose bank account type: ");
+                    System.out.println("Choose bank account type: Input 5 for Checking or 6 for Savings ");
                     if (scan.nextInt() == Checking) {
                         System.out.println("Please select amount you would like to transfer from Checking:");
                         double transferAmount = scan.nextDouble();
@@ -77,12 +77,13 @@ public class ATM {
                     System.out.println();
             }
 
-            break;
+
+           /* break;
                 case 7:
                     System.exit(0);
 
 
-            }
+            }*/
         }
     }
 
