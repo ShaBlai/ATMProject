@@ -48,6 +48,10 @@ public class Bank {
         return verificationBoolean;
     }
 
+//
+//    public boolean userAccount() {
+//
+//    }
 
     public void withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
@@ -62,12 +66,41 @@ public class Bank {
             customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
             System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
                     "\nPlease take cash below. " +
-                    "\nYour new savings account balance is: " + customerSavingsBalance + "\n");
+                    "\nYour new savings account balance is: " + customerSavingsBalance);
         } else {
-            System.out.println("There are insufficient funds in this account! " +
-                    "\nThe balance is: " + customerInfo.getCustomerSavingsBalance() + "\n");
+
+//        for(CustomerInfo customer : userData) {
+//            if(customer.getCustomerCheckingBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//            if(customer.getCustomerSavingsBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//        }
         }
     }
+
+        public void transferFromChecking (String cardNumberOfCorrectCustomer, double transferAmount){
+
+            List<CustomerInfo> correctCustomerTransfer = userData.stream()
+                    .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                    .collect(Collectors.toList());
+            CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
+
+            if (customerInfoTransfer.getCustomerCheckingBalance()>= transferAmount) {
+                Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
+                customerCheckingBalance -= transferAmount;
+            }
+        }
+
+
+
+        public void transferFromSavings (String cardNumberOfCorrectCustomer, double transferAmount) {
+
+
+        }
+
+
 
 
     public List<CustomerInfo> getUserData() {
@@ -76,31 +109,6 @@ public class Bank {
 
 
 
-    //method in case the user inputs the incorrect username to their account
-    public CustomerInfo nullCustomerUserName(String customerUserName) throws IllegalArgumentException {
-
-        // if (//scanner inputted field.equals null){
-        //throw new IllegalArgumentException ("You must provide a username");
-        //}
-        // else if (//scanner inputted field != customerUserName){
-        //throw new IllegalArgumentException ("You must provide a correct username");
-
-        // }
-
-        return null;
-
-    }
-
-    //method in case the user inputs the incorrect pin to their account
-    public CustomerInfo nullCustomerPin(Integer customerPin) throws IllegalArgumentException {
-
-        // if (//scanner inputted field.equals null) {
-        //throw new IllegalArgumentException ("You must provide a pin");
-        //}
-        //else if (//scanner inputted field != customerPin){
-        //throw new IllegalArgumentException ("Your pin is incorrect, please enter the correct pin")
-
-        return null;
 
     }
 

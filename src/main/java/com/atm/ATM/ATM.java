@@ -64,14 +64,20 @@ public class ATM {
 
                 case 4:
                     System.out.println("Choose bank account type: ");
-                    if (options == Checking) {
-                        System.out.println("select amount you would like to transfer:");
+                    if (scan.nextInt() == Checking) {
+                        System.out.println("Please select amount you would like to transfer from Checking:");
                         double transferAmount = scan.nextDouble();
-                        System.out.println("would you like to proceed with this transfer?" + transferAmount);
-                    } else {
-                        System.out.println();
+                        Bank.getInstance().transferFromChecking(cardNumberThisSession, transferAmount);
+
+                    } else if (scan.nextInt() == Savings){
+                        System.out.println("Please select amount you would like to transfer from Savings:");
+                        double transferAmount = scan.nextDouble();
+                        Bank.getInstance().transferFromSavings(cardNumberThisSession, transferAmount);
                     }
-                    break;
+                    System.out.println();
+            }
+
+            break;
                 case 7:
                     System.exit(0);
 
