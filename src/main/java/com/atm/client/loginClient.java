@@ -2,9 +2,9 @@ package com.atm.client;
 
 import com.atm.bank.ATM;
 import com.atm.bank.Bank;
-//import com.atm.bank.CustomerInfo;
-//import com.atm.bank.CustomerInfo;
 
+
+import java.util.List;
 import java.util.Scanner;
 
 public class loginClient {
@@ -20,14 +20,14 @@ public class loginClient {
         //old way of object creation of bank
         //Bank bank = new Bank();
 
-                                            //calling singleton instance of bank
+        //calling singleton instance of bank
         boolean banksVerificationCheck = Bank.getInstance().verifyLoginClientInfo(cardNumberUserProvided, pinNumberUserProvided);
 
         if (banksVerificationCheck) {
             verifyUserInfoBoolean = true;
             //add logic to call ATMClient
             ATM atm = new ATM();
-            atm.runMenu();
+            atm.runMenu(cardNumberUserProvided);
         }
 
         return verifyUserInfoBoolean;

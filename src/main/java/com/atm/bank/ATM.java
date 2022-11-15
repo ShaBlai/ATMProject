@@ -21,9 +21,10 @@ public class ATM{
 
     private static double balance;
 
-    Scanner scan = new Scanner(System.in);
 
-    public void runMenu() {
+    public void runMenu(String cardNumberThisSession) {
+
+        Scanner scan = new Scanner(System.in);
         while (true) {
             System.out.println("Select " + Withdrawal + " to withdraw");
             System.out.println("Select " + Deposit + " to deposit");
@@ -42,13 +43,16 @@ public class ATM{
 //                    int checking = scan.nextInt();
                     if(scan.nextInt() == Savings) {
                         System.out.println("Enter amount you would like to withdraw from savings");
-                        CustomerInfo customerInfo = new CustomerInfo();
-                        Bank.getInstance().withdraw((customerInfo.getCustomerSavingsBalance()));
+                        double amountToWithdraw = scan.nextDouble();
+                        Bank.getInstance().withdraw(cardNumberThisSession, amountToWithdraw);
+//                        CustomerInfo customerInfo = new CustomerInfo();
+//                        CustomerInfo customerInfo = Bank.getInstance().getUserData().get(1);
+//                        customerInfo.getCustomerSavingsBalance();
                     }
                     else if (scan.nextInt() == Checking) {
                         System.out.println("Enter amount you would like to withdraw from checking");
                         CustomerInfo customerInfo = new CustomerInfo();
-                        Bank.getInstance().withdraw((customerInfo.getCustomerCheckingBalance()));
+
                     }
 
                     double withdraw = scan.nextDouble();

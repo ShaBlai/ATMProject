@@ -2,26 +2,22 @@ package com.atm.bank;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Bank {
 
     private static Bank bank;
-    private Bank()
-    {
+    private Bank() {
         //test of the singleton
-
     }
-    //singleton implementation of the bank
-    public static Bank getInstance()
-    {
 
-        if(null == bank)
-        {
+    //singleton implementation of the bank
+    public static Bank getInstance() {
+        if(null == bank) {
             bank = new Bank();
         }
         return bank;
     }
-
 
 
     //list created as a database to reference their bank information
@@ -37,6 +33,7 @@ public class Bank {
     );
 
     public boolean verifyLoginClientInfo(String providedCardNumber, String providedPinNumber) {
+
         boolean verificationBoolean = false;
         for (CustomerInfo customer : userData) {
             if (customer.getCustomerCardNumber().equals(providedCardNumber) && customer.getCustomerPin().equals(providedPinNumber)) {
@@ -48,7 +45,6 @@ public class Bank {
         if (!verificationBoolean) {
             System.out.println("Incorrect card number and/or pin entered.");
         }
-
         return verificationBoolean;
     }
 
@@ -57,16 +53,29 @@ public class Bank {
 //
 //    }
 
-    public void withdraw (double balance) {
+    public void withdraw (String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
-        for(CustomerInfo customer : userData) {
-            if(customer.getCustomerCheckingBalance().equals(balance)) {
-                System.out.println(customer);
-            }
-            if(customer.getCustomerSavingsBalance().equals(balance)) {
-                System.out.println(customer);
-            }
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+        if (customerInfo.getCustomerSavingsBalance() >= withdrawalAmount) {
+            Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
+            customerSavingsBalance -= withdrawalAmount;
+            customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
+            System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
+                    "\nPlease take cash below. " +
+                    "\nYour new savings account balance is: " + customerSavingsBalance);
         }
+
+//        for(CustomerInfo customer : userData) {
+//            if(customer.getCustomerCheckingBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//            if(customer.getCustomerSavingsBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//        }
     }
 
 
