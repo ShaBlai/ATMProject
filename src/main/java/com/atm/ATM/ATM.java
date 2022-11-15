@@ -35,8 +35,6 @@ public class ATM {
                 case 1:
                     System.out.println("Would you like to withdraw " +
                             "from Savings enter: "+Savings+ " or Checking enter: " +Checking);
-//                    int savings = scan.nextInt();
-//                    int checking = scan.nextInt();
                     if(scan.nextInt() == Savings) {
                         System.out.println("Enter amount you would like to withdraw from savings");
                         double amountToWithdraw = scan.nextDouble();
@@ -45,10 +43,9 @@ public class ATM {
                     }
                     else if (scan.nextInt() == Checking) {
                         System.out.println("Enter amount you would like to withdraw from checking");
-
-
+                        double amountToWithdraw = scan.nextDouble();
+                        Bank.getInstance().withdrawFromChecking(cardNumberThisSession, amountToWithdraw);
                     }
-
                     break;
 
                 case 2:
