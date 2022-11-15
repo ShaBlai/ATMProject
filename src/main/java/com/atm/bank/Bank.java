@@ -161,6 +161,33 @@ public class Bank {
         }
     }
 
+    public void displayCustomerCheckingBalance(String cardNumberOfCorrectCustomer) {
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+
+
+        Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
+        System.out.println("Your checking balance is " +customerCheckingBalance);
+
+    }
+
+
+    public void displayCustomerSavingBalance(String cardNumberOfCorrectCustomer) {
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+
+
+        Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
+        System.out.println("Your checking balance is " +customerSavingsBalance);
+
+    }
+
+
+
 
 
     public List<CustomerInfo> getUserData() {

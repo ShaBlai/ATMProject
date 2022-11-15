@@ -104,11 +104,18 @@ public class ATM {
                     break;
 
                 case "3":
-                    System.out.println("Balance: " + balance);
+                    System.out.println("Select account type you like to display" +
+                            "Savings enter: "+Savings+ " or Checking enter: " +Checking);
+                    input = scan.nextLine();
+                    if(input.equals("6")) {
+                        Bank.getInstance().displayCustomerSavingBalance(cardNumberThisSession);
+                    } else if(input.equals("5")) {
+                        Bank.getInstance().displayCustomerCheckingBalance(cardNumberThisSession);
+                    }
                     break;
 
                 case "4":
-                    System.out.println("Choose bank account type: Input 5 for Checking or 6 for Savings ");
+                    System.out.println("Choose bank account type: enter 5 for Checking or 6 for Savings ");
                     if (scan.nextLine().equals("5")) {
                         System.out.println("Please select amount you would like to transfer from Checking:");
                         double transferAmount = scan.nextDouble();
