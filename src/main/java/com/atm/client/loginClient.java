@@ -17,8 +17,11 @@ public class loginClient {
 
         verifyUserInfoBoolean = false;
 
-        Bank bank = new Bank();
-        boolean banksVerificationCheck = bank.verifyLoginClientInfo(cardNumberUserProvided, pinNumberUserProvided);
+        //old way of object creation of bank
+        //Bank bank = new Bank();
+
+                                            //calling singleton instance of bank
+        boolean banksVerificationCheck = Bank.getInstance().verifyLoginClientInfo(cardNumberUserProvided, pinNumberUserProvided);
 
         if (banksVerificationCheck) {
             verifyUserInfoBoolean = true;

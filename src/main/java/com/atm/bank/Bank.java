@@ -5,6 +5,25 @@ import java.util.List;
 
 public class Bank {
 
+    private static Bank bank;
+    private Bank()
+    {
+        //test of the singleton
+
+    }
+    //singleton implementation of the bank
+    public static Bank getInstance()
+    {
+
+        if(null == bank)
+        {
+            bank = new Bank();
+        }
+        return bank;
+    }
+
+
+
     //list created as a database to reference their bank information
     private List<CustomerInfo> userData = Arrays.asList(
             //customer's information attached to their account
