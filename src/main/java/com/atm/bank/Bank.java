@@ -62,12 +62,38 @@ public class Bank {
             customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
             System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
                     "\nPlease take cash below. " +
-                    "\nYour new savings account balance is: " + customerSavingsBalance + "\n");
+                    "\nYour new savings account balance is: " + customerSavingsBalance);
         } else {
-            System.out.println("There are insufficient funds in this account! " +
-                    "\nThe balance is: " + customerInfo.getCustomerSavingsBalance() + "\n");
+
+//        for(CustomerInfo customer : userData) {
+//            if(customer.getCustomerCheckingBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//            if(customer.getCustomerSavingsBalance().equals(balance)) {
+//                System.out.println(customer);
+//            }
+//        }
         }
     }
+
+    public void withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+
+        if (customerInfo.getCustomerCheckingBalance() >= withdrawalAmount) {
+            Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
+            customerCheckingBalance -= withdrawalAmount;
+            customerInfo.setCustomerCheckingBalance(customerCheckingBalance);
+            System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
+                    "\nPlease take cash below. " +
+                    "\nYour new checking account balance is: " + customerCheckingBalance);
+        } else {
+            System.out.println("Insufficient Balance ");
+            }
+    }
+
 
 
     public List<CustomerInfo> getUserData() {
