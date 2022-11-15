@@ -3,7 +3,7 @@ package com.atm.bank;
 //package specific class only for Bank's access
 class CustomerInfo {
 
-     //fields for the customer's info in the bank
+    //fields for the customer's info in the bank
     private String customerCardNumber;
     private String customerUserName;
     private String customerFirstName;
@@ -86,8 +86,8 @@ class CustomerInfo {
         return customerFirstName;
     }
 
-    public void setCustomerFirstName(String customerFirstName){
-            this.customerFirstName = customerFirstName;
+    public void setCustomerFirstName(String customerFirstName) {
+        this.customerFirstName = customerFirstName;
     }
 
     public String getCustomerLastName() {

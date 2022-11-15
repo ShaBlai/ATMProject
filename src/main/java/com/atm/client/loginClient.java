@@ -50,9 +50,6 @@ public class loginClient {
         } while (!verifyUserInfoBoolean);
 
 
-
-
-
         //        boolean checkCardNumberIsFourDigits = false;
 
 //        do {
@@ -90,7 +87,6 @@ public class loginClient {
 //        } while (cardNumberUserProvided <= 1000 || cardNumberUserProvided>=9999);
 
 
-
 //        System.out.println("Thank you! This your card number " + cardNumberUserProvided);
 
 //        do {
@@ -106,7 +102,6 @@ public class loginClient {
 
 
     }
-
 
 
 }

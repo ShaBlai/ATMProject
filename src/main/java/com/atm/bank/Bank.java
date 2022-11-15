@@ -7,13 +7,14 @@ import java.util.stream.Collectors;
 public class Bank {
 
     private static Bank bank;
+
     private Bank() {
         //test of the singleton
     }
 
     //singleton implementation of the bank
     public static Bank getInstance() {
-        if(null == bank) {
+        if (null == bank) {
             bank = new Bank();
         }
         return bank;
@@ -96,8 +97,8 @@ public class Bank {
         Double customerSavingsBalance = correctCustomerInfo.getCustomerSavingsBalance();
         customerSavingsBalance += depositAmount;
         correctCustomerInfo.setCustomerSavingsBalance(customerSavingsBalance);
-        System.out.println("You have deposited "+depositAmount+" into your savings account. " +
-                "\nYour updated account balance is: "+customerSavingsBalance);
+        System.out.println("You have deposited " + depositAmount + " into your savings account. " +
+                "\nYour updated account balance is: " + customerSavingsBalance);
     }
 
     public void depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
@@ -109,7 +110,7 @@ public class Bank {
         Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
         customerCurrentCheckingBalance += depositAmount;
         customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
-        System.out.println("You have deposited " +depositAmount+ " dollars. " +
+        System.out.println("You have deposited " + depositAmount + " dollars. " +
                 "\nYour new checking account balance is: " + customerCurrentCheckingBalance);
     }
 
@@ -135,6 +136,9 @@ public class Bank {
 
             System.out.println("You have transferred $" + transferAmount + " dollars to Savings " +
                     "\nYour new savings account balance is: $" + customerSavingsBalance);
+
+        } else {
+            System.out.println("You cannot transfer this amount, insufficient funds to transfer");
         }
     }
 
@@ -158,6 +162,9 @@ public class Bank {
 
             System.out.println("You have transferred $" + transferAmount + " dollars to Checking " +
                     "\nYour new Checking Account balance is: $" + customerCheckingBalance);
+
+        } else {
+            System.out.println("You cannot transfer this amount, insufficient funds to transfer");
         }
     }
 
@@ -169,7 +176,7 @@ public class Bank {
 
 
         Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
-        System.out.println("Your checking balance is " +customerCheckingBalance);
+        System.out.println("Your checking balance is " + customerCheckingBalance);
 
     }
 
@@ -182,18 +189,14 @@ public class Bank {
 
 
         Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
-        System.out.println("Your checking balance is " +customerSavingsBalance);
+        System.out.println("Your savings balance is " + customerSavingsBalance);
 
     }
-
-
-
 
 
     public List<CustomerInfo> getUserData() {
         return userData;
     }
-
 
 
     //method in case the user inputs the incorrect username to their account
