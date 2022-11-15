@@ -50,9 +50,8 @@ public class ATM {
 
                 case 2:
                     System.out.println("Enter the amount you want to deposit");
-                    double deposit = scan.nextDouble();
-                    balance += deposit;
-                    System.out.println("Deposit successful your current balance is " + balance);
+                    double amountToDeposit = scan.nextDouble();
+                    Bank.getInstance().depositToChecking(cardNumberThisSession, amountToDeposit);
                     break;
 
                 case 3:
