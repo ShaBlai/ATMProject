@@ -48,10 +48,6 @@ public class Bank {
         return verificationBoolean;
     }
 
-//
-//    public boolean userAccount() {
-//
-//    }
 
     public void withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
@@ -66,17 +62,11 @@ public class Bank {
             customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
             System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
                     "\nPlease take cash below. " +
-                    "\nYour new savings account balance is: " + customerSavingsBalance);
+                    "\nYour new savings account balance is: " + customerSavingsBalance + "\n");
         } else {
-
-//        for(CustomerInfo customer : userData) {
-//            if(customer.getCustomerCheckingBalance().equals(balance)) {
-//                System.out.println(customer);
-//            }
-//            if(customer.getCustomerSavingsBalance().equals(balance)) {
-//                System.out.println(customer);
-//            }
-//        }
+            System.out.println("There are insufficient funds in this account! " +
+                    "\nThe balance is: " + customerInfo.getCustomerSavingsBalance() + "\n");
+        }
     }
 
 

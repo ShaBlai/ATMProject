@@ -1,9 +1,11 @@
-package com.atm.bank;
+package com.atm.ATM;
 
+
+import com.atm.bank.Bank;
 
 import java.util.Scanner;
 
-public class ATM{
+public class ATM {
 
     private static final int Withdrawal = 1;
     private static final int Deposit = 2;
@@ -39,22 +41,14 @@ public class ATM{
                         System.out.println("Enter amount you would like to withdraw from savings");
                         double amountToWithdraw = scan.nextDouble();
                         Bank.getInstance().withdrawFromSavings(cardNumberThisSession, amountToWithdraw);
-//                        CustomerInfo customerInfo = new CustomerInfo();
-//                        CustomerInfo customerInfo = Bank.getInstance().getUserData().get(1);
-//                        customerInfo.getCustomerSavingsBalance();
+
                     }
                     else if (scan.nextInt() == Checking) {
                         System.out.println("Enter amount you would like to withdraw from checking");
-                        CustomerInfo customerInfo = new CustomerInfo();
+
 
                     }
 
-                    double withdraw = scan.nextDouble();
-                    if (balance >= withdraw) {
-                        balance -= withdraw;
-                    } else {
-                        System.out.println("Insufficient Balance");
-                    }
                     break;
 
                 case 2:
