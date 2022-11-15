@@ -38,7 +38,8 @@ public class Bank {
         boolean verificationBoolean = false;
         for (CustomerInfo customer : userData) {
             if (customer.getCustomerCardNumber().equals(providedCardNumber) && customer.getCustomerPin().equals(providedPinNumber)) {
-                System.out.println("Card number & pin verification passed.");
+                System.out.println("Card number & pin verification passed. \n\nWelcome " +
+                        customer.getCustomerFirstName() + " " + customer.getCustomerLastName() + "!");
                 verificationBoolean = true;
             }
         }
@@ -61,9 +62,10 @@ public class Bank {
             Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
             customerSavingsBalance -= withdrawalAmount;
             customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
-            System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
+            System.out.format("You have withdrawn $%.2f from Savings. " +
                     "\nPlease take cash below. " +
-                    "\nYour new savings account balance is: " + customerSavingsBalance);
+                    "\nYour updated savings account balance is: $" +
+                    customerSavingsBalance + ".\n\n", withdrawalAmount);
         } else {
             System.out.println("Insufficient funds in account.");
         }
@@ -79,9 +81,10 @@ public class Bank {
             Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
             customerCheckingBalance -= withdrawalAmount;
             customerInfo.setCustomerCheckingBalance(customerCheckingBalance);
-            System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
+            System.out.format("You have withdrawn $%.2f from Checking. " +
                     "\nPlease take cash below. " +
-                    "\nYour new checking account balance is: " + customerCheckingBalance);
+                    "\nYour updated savings account balance is: $" +
+                    customerCheckingBalance + ".\n\n", withdrawalAmount);
         } else {
             System.out.println("Insufficient funds in account.");
         }
@@ -97,8 +100,9 @@ public class Bank {
         Double customerSavingsBalance = correctCustomerInfo.getCustomerSavingsBalance();
         customerSavingsBalance += depositAmount;
         correctCustomerInfo.setCustomerSavingsBalance(customerSavingsBalance);
-        System.out.println("You have deposited " + depositAmount + " into your savings account. " +
-                "\nYour updated account balance is: " + customerSavingsBalance);
+        System.out.format("You have deposited $%.2f into your Savings account. " +
+                "\nYour updated account balance is: $" +
+                customerSavingsBalance + ".\n\n", depositAmount);
     }
 
     public void depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
@@ -110,8 +114,9 @@ public class Bank {
         Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
         customerCurrentCheckingBalance += depositAmount;
         customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
-        System.out.println("You have deposited " + depositAmount + " dollars. " +
-                "\nYour new checking account balance is: " + customerCurrentCheckingBalance);
+        System.out.format("You have deposited $%.2f into your Checking account. " +
+                "\nYour updated account balance is: $" +
+                customerCurrentCheckingBalance + ".\n\n", depositAmount);
     }
 
 
@@ -134,11 +139,11 @@ public class Bank {
             customerInfoTransfer.setCustomerSavingsBalance(customerSavingsBalance);
 
 
-            System.out.println("You have transferred $" + transferAmount + " dollars to Savings " +
-                    "\nYour new savings account balance is: $" + customerSavingsBalance);
+            System.out.format("You have transferred $%.2f to Savings " +
+                    "\nYour new Savings account balance is: $" + customerSavingsBalance + ".\n\n", transferAmount);
 
         } else {
-            System.out.println("You cannot transfer this amount, insufficient funds to transfer");
+            System.out.println("You cannot transfer this amount, insufficient funds to transfer.");
         }
     }
 
@@ -160,8 +165,8 @@ public class Bank {
             customerCheckingBalance += (transferAmount);
             customerInfoTransfer.setCustomerCheckingBalance(customerCheckingBalance);
 
-            System.out.println("You have transferred $" + transferAmount + " dollars to Checking " +
-                    "\nYour new Checking Account balance is: $" + customerCheckingBalance);
+            System.out.format("You have transferred $%.2f to Checking " +
+                    "\nYour new Checking account balance is: $" + customerCheckingBalance + ".\n\n", transferAmount);
 
         } else {
             System.out.println("You cannot transfer this amount, insufficient funds to transfer");
@@ -176,7 +181,7 @@ public class Bank {
 
 
         Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
-        System.out.println("Your checking balance is " + customerCheckingBalance);
+        System.out.println("Your checking balance is $" + customerCheckingBalance);
 
     }
 
@@ -189,7 +194,7 @@ public class Bank {
 
 
         Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
-        System.out.println("Your savings balance is " + customerSavingsBalance);
+        System.out.println("Your savings balance is $" + customerSavingsBalance);
 
     }
 
@@ -197,35 +202,4 @@ public class Bank {
     public List<CustomerInfo> getUserData() {
         return userData;
     }
-
-
-    //method in case the user inputs the incorrect username to their account
-    public CustomerInfo nullCustomerUserName(String customerUserName) throws IllegalArgumentException {
-
-        // if (//scanner inputted field.equals null){
-        //throw new IllegalArgumentException ("You must provide a username");
-        //}
-        // else if (//scanner inputted field != customerUserName){
-        //throw new IllegalArgumentException ("You must provide a correct username");
-
-        // }
-
-        return null;
-
-    }
-
-    //method in case the user inputs the incorrect pin to their account
-    public CustomerInfo nullCustomerPin(Integer customerPin) throws IllegalArgumentException {
-
-        // if (//scanner inputted field.equals null) {
-        //throw new IllegalArgumentException ("You must provide a pin");
-        //}
-        //else if (//scanner inputted field != customerPin){
-        //throw new IllegalArgumentException ("Your pin is incorrect, please enter the correct pin")
-
-        return null;
-
-    }
-
-
 }

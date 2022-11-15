@@ -13,19 +13,17 @@ public class ATM {
     private static final String Transfer = "4";
     private static final String Checking = "5";
     private static final String Savings = "6";
-    private static final String Exit = "7";
-
-    private static double balance;
+    private static final String Exit = "0";
 
 
     public void runMenu(String cardNumberThisSession) {
 
         Scanner scan = new Scanner(System.in);
         while (true) {
-            System.out.println("Select " + Withdrawal + " to withdraw");
-            System.out.println("Select " + Deposit + " to deposit");
-            System.out.println("Select " + Balance_Inquiry + " to check balance inquiry");
-            System.out.println("Select " + Transfer + " to transfer funds");
+            System.out.println("Select " + Withdrawal + " for Withdrawal");
+            System.out.println("Select " + Deposit + " for Deposit");
+            System.out.println("Select " + Balance_Inquiry + " for Balance Inquiry");
+            System.out.println("Select " + Transfer + " for Transfer Funds");
             System.out.println("Select " + Exit + " to Exit");
             String options = scan.nextLine();
 
@@ -105,7 +103,7 @@ public class ATM {
 
                 case "3":
                     System.out.println("Select the account type you'd like to display" +
-                            "Savings enter: " + Savings + " or Checking enter: " + Checking);
+                            " Savings enter: " + Savings + " or Checking enter: " + Checking);
                     input = scan.nextLine();
                     if (input.equals("6")) {
                         Bank.getInstance().displayCustomerSavingBalance(cardNumberThisSession);
@@ -145,7 +143,7 @@ public class ATM {
                     }
                     break;
 
-                case "7":
+                case "0":
                     System.exit(0);
                     break;
 
