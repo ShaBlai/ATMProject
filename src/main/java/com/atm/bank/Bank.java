@@ -48,10 +48,6 @@ public class Bank {
         return verificationBoolean;
     }
 
-//
-//    public boolean userAccount() {
-//
-//    }
 
     public void withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
@@ -79,6 +75,25 @@ public class Bank {
 //        }
         }
     }
+
+    public void withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+
+        if (customerInfo.getCustomerCheckingBalance() >= withdrawalAmount) {
+            Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
+            customerCheckingBalance -= withdrawalAmount;
+            customerInfo.setCustomerCheckingBalance(customerCheckingBalance);
+            System.out.println("You have withdrawn " + withdrawalAmount + " dollars. " +
+                    "\nPlease take cash below. " +
+                    "\nYour new checking account balance is: " + customerCheckingBalance);
+        } else {
+            System.out.println("Insufficient Balance ");
+            }
+    }
+
 
         public void transferFromChecking (String cardNumberOfCorrectCustomer, double transferAmount){
 
@@ -109,6 +124,31 @@ public class Bank {
 
 
 
+    //method in case the user inputs the incorrect username to their account
+    public CustomerInfo nullCustomerUserName(String customerUserName) throws IllegalArgumentException {
+
+        // if (//scanner inputted field.equals null){
+        //throw new IllegalArgumentException ("You must provide a username");
+        //}
+        // else if (//scanner inputted field != customerUserName){
+        //throw new IllegalArgumentException ("You must provide a correct username");
+
+        // }
+
+        return null;
+
+    }
+
+    //method in case the user inputs the incorrect pin to their account
+    public CustomerInfo nullCustomerPin(Integer customerPin) throws IllegalArgumentException {
+
+        // if (//scanner inputted field.equals null) {
+        //throw new IllegalArgumentException ("You must provide a pin");
+        //}
+        //else if (//scanner inputted field != customerPin){
+        //throw new IllegalArgumentException ("Your pin is incorrect, please enter the correct pin")
+
+        return null;
 
     }
 
