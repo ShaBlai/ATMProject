@@ -94,6 +94,22 @@ public class Bank {
             }
     }
 
+    public void depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo customerInfo = correctCustomer.get(0);
+
+
+            Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
+            customerCurrentCheckingBalance += depositAmount;
+            customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
+            System.out.println("You have deposited " +depositAmount+ " dollars. " +
+                    "\nYour new checking account balance is: " + customerCurrentCheckingBalance);
+
+    }
+
+
 
     public void transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
 
