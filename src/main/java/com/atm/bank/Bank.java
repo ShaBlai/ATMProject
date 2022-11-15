@@ -64,15 +64,7 @@ public class Bank {
                     "\nPlease take cash below. " +
                     "\nYour new savings account balance is: " + customerSavingsBalance);
         } else {
-
-//        for(CustomerInfo customer : userData) {
-//            if(customer.getCustomerCheckingBalance().equals(balance)) {
-//                System.out.println(customer);
-//            }
-//            if(customer.getCustomerSavingsBalance().equals(balance)) {
-//                System.out.println(customer);
-//            }
-//        }
+            System.out.println("Insufficient funds in account.");
         }
     }
 
@@ -90,8 +82,22 @@ public class Bank {
                     "\nPlease take cash below. " +
                     "\nYour new checking account balance is: " + customerCheckingBalance);
         } else {
-            System.out.println("Insufficient Balance ");
-            }
+            System.out.println("Insufficient funds in account.");
+        }
+    }
+
+    public void depositToSavings(String cardNumberOfCorrectCustomer, double depositAmount) {
+
+        List<CustomerInfo> correctCustomer = userData.stream()
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
+                .collect(Collectors.toList());
+        CustomerInfo correctCustomerInfo = correctCustomer.get(0);
+
+        Double customerSavingsBalance = correctCustomerInfo.getCustomerSavingsBalance();
+        customerSavingsBalance += depositAmount;
+        correctCustomerInfo.setCustomerSavingsBalance(customerSavingsBalance);
+        System.out.println("You have deposited "+depositAmount+" into your savings account. " +
+                "\nYour updated account balance is: "+customerSavingsBalance);
     }
 
     public void depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
@@ -100,15 +106,12 @@ public class Bank {
                 .collect(Collectors.toList());
         CustomerInfo customerInfo = correctCustomer.get(0);
 
-
-            Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
-            customerCurrentCheckingBalance += depositAmount;
-            customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
-            System.out.println("You have deposited " +depositAmount+ " dollars. " +
-                    "\nYour new checking account balance is: " + customerCurrentCheckingBalance);
-
+        Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
+        customerCurrentCheckingBalance += depositAmount;
+        customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
+        System.out.println("You have deposited " +depositAmount+ " dollars. " +
+                "\nYour new checking account balance is: " + customerCurrentCheckingBalance);
     }
-
 
 
     public void transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
@@ -136,7 +139,7 @@ public class Bank {
     }
 
 
-    public List<CustomerInfo> transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
+    public void transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
 
         List<CustomerInfo> correctCustomerTransfer = userData.stream()
                 .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
@@ -155,12 +158,8 @@ public class Bank {
 
             System.out.println("You have transferred $" + transferAmount + " dollars to Checking " +
                     "\nYour new Checking Account balance is: $" + customerCheckingBalance);
-
         }
-        return null;
     }
-
-
 
 
 
