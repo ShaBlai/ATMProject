@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.SortedMap;
 
-public class ATM extends Bank {
-
+public class ATM{
 
     private static final int Withdrawal = 1;
     private static final int Deposit = 2;
@@ -44,12 +43,12 @@ public class ATM extends Bank {
                     if(scan.nextInt() == Savings) {
                         System.out.println("Enter amount you would like to withdraw from savings");
                         CustomerInfo customerInfo = new CustomerInfo();
-                        withdraw(customerInfo.getCustomerSavingsBalance());
+                        Bank.getInstance().withdraw((customerInfo.getCustomerSavingsBalance()));
                     }
                     else if (scan.nextInt() == Checking) {
                         System.out.println("Enter amount you would like to withdraw from checking");
                         CustomerInfo customerInfo = new CustomerInfo();
-                        withdraw(customerInfo.getCustomerCheckingBalance());
+                        Bank.getInstance().withdraw((customerInfo.getCustomerCheckingBalance()));
                     }
 
                     double withdraw = scan.nextDouble();
