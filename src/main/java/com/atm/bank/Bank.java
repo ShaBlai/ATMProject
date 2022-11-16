@@ -51,7 +51,7 @@ public class Bank {
     }
 
 
-    public void withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+    public CustomerInfo withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
 
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
@@ -69,9 +69,10 @@ public class Bank {
         } else {
             System.out.println("Insufficient funds in account.");
         }
+        return customerInfo;
     }
 
-    public void withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+    public CustomerInfo withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
@@ -88,9 +89,10 @@ public class Bank {
         } else {
             System.out.println("Insufficient funds in account.");
         }
+        return customerInfo;
     }
 
-    public void depositToSavings(String cardNumberOfCorrectCustomer, double depositAmount) {
+    public CustomerInfo depositToSavings(String cardNumberOfCorrectCustomer, double depositAmount) {
 
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
@@ -103,24 +105,28 @@ public class Bank {
         System.out.format("You have deposited $%.2f into your Savings account. " +
                 "\nYour updated account balance is: $" +
                 customerSavingsBalance + ".\n\n", depositAmount);
+
+        return correctCustomerInfo;
     }
 
-    public void depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
+    public CustomerInfo depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
-        CustomerInfo customerInfo = correctCustomer.get(0);
+        CustomerInfo correctCustomerInfo = correctCustomer.get(0);
 
-        Double customerCurrentCheckingBalance = customerInfo.getCustomerCheckingBalance();
+        Double customerCurrentCheckingBalance = correctCustomerInfo.getCustomerCheckingBalance();
         customerCurrentCheckingBalance += depositAmount;
-        customerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
+        correctCustomerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
         System.out.format("You have deposited $%.2f into your Checking account. " +
                 "\nYour updated account balance is: $" +
                 customerCurrentCheckingBalance + ".\n\n", depositAmount);
+
+        return correctCustomerInfo;
     }
 
 
-    public void transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
+    public CustomerInfo transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
 
         List<CustomerInfo> correctCustomerTransfer = userData.stream()
                 .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
@@ -145,10 +151,12 @@ public class Bank {
         } else {
             System.out.println("You cannot transfer this amount, insufficient funds to transfer.");
         }
+
+        return customerInfoTransfer;
     }
 
 
-    public void transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
+    public CustomerInfo transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
 
         List<CustomerInfo> correctCustomerTransfer = userData.stream()
                 .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
@@ -171,9 +179,11 @@ public class Bank {
         } else {
             System.out.println("You cannot transfer this amount, insufficient funds to transfer");
         }
+
+        return customerInfoTransfer;
     }
 
-    public void displayCustomerCheckingBalance(String cardNumberOfCorrectCustomer) {
+    public CustomerInfo displayCustomerCheckingBalance(String cardNumberOfCorrectCustomer) {
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
@@ -183,10 +193,11 @@ public class Bank {
         Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
         System.out.println("Your checking balance is $" + customerCheckingBalance);
 
+        return customerInfo;
     }
 
 
-    public void displayCustomerSavingBalance(String cardNumberOfCorrectCustomer) {
+    public CustomerInfo displayCustomerSavingBalance(String cardNumberOfCorrectCustomer) {
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
@@ -196,6 +207,7 @@ public class Bank {
         Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
         System.out.println("Your savings balance is $" + customerSavingsBalance);
 
+        return customerInfo;
     }
 
 
