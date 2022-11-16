@@ -26,7 +26,7 @@ public class Bank {
             //customer's information attached to their account
             new CustomerInfo("1234", "Blairy", "Shawn",
                     "Blair", "1010", .99, 12.34, 1111),
-            new CustomerInfo("6969", "Camo", "Cameron",
+            new CustomerInfo("5678", "Camo", "Cameron",
                     "Davis", "1234", 9936.89, 12000.34, 2222),
             new CustomerInfo("4321", "TheJuan", "Juan",
                     "Cruz", "0101", 12000.43, 225203.43, 3333)

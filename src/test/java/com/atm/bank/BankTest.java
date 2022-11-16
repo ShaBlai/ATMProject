@@ -23,7 +23,7 @@ public class BankTest {
                 .collect(Collectors.toList());
 
         cameronDavis = Bank.getInstance().getUserData().stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals("6969"))
+                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals("5678"))
                 .collect(Collectors.toList());
 
         juanCruz = Bank.getInstance().getUserData().stream()
