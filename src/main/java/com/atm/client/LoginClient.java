@@ -6,7 +6,7 @@ import com.atm.bank.Bank;
 
 import java.util.Scanner;
 
-public class loginClient {
+public class LoginClient {
 
     private static String cardNumberUserProvided;
     private static String pinNumberUserProvided;

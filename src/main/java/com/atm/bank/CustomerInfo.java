@@ -32,22 +32,6 @@ class CustomerInfo {
 
     }
 
-//    public boolean validateCardNumber(int userCard) {
-//        if(userCard != getCustomerCardNumber()) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-//
-//    public boolean validatePin(int userPin) {
-//        if(userPin != getCustomerPin()) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-
 
     //getters and setters
     public String getCustomerCardNumber() {
