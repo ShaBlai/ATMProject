@@ -7,6 +7,7 @@ import java.util.Scanner;
 //class for the ATM execution
 public class ATM {
 
+    //defines menu options for scanner
     private static final String Withdrawal = "1";
     private static final String Deposit = "2";
     private static final String Balance_Inquiry = "3";
@@ -30,7 +31,7 @@ public class ATM {
         return atm;
     }
 
-    //Method to perform the Menu logic once User Account is logged in
+    //Method to perform the Menu logic once User is verified in LoginClient
     public void runMenu(String cardNumberThisSession) {
 
         Scanner scan = new Scanner(System.in);
@@ -57,7 +58,7 @@ public class ATM {
                                     "\nEnter an amount to withdraw from Savings: ");
                             while (!scan.hasNextDouble()) {
                                 System.out.println("Invalid entry type, try again.");
-                                scan.next(); // this is important!
+                                scan.next();
                             }
                             withdrawalEntry = scan.nextDouble();
                             scan.nextLine();
@@ -72,7 +73,7 @@ public class ATM {
                                     "\nEnter an amount to withdraw from Checking: ");
                             while (!scan.hasNextDouble()) {
                                 System.out.println("Invalid entry type, try again.");
-                                scan.next(); // this is important!
+                                scan.next();
                             }
                             withdrawalEntry = scan.nextDouble();
                             scan.nextLine();
@@ -94,7 +95,7 @@ public class ATM {
                                     "\nEnter an amount to deposit into Savings: ");
                             while (!scan.hasNextDouble()) {
                                 System.out.println("Invalid entry type, try again.");
-                                scan.next(); // this is important!
+                                scan.next();
                             }
                             depositInput = scan.nextDouble();
                             scan.nextLine();
@@ -166,7 +167,7 @@ public class ATM {
                 case "0":
                     System.exit(0);
                     break;
-                //Default case if user does not select correct input
+                //Default case if user does not select a valid input
                 default:
                     System.out.println("Invalid entry, try again.");
             }
