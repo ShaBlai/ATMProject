@@ -28,12 +28,7 @@ class CustomerInfo {
         this.customerAccountNumber = customerAccountNumber;
     }
 
-    public CustomerInfo() {
-
-    }
-
-
-    //getters and setters
+    //getters and setters of the customer's information'
     public String getCustomerCardNumber() {
         return customerCardNumber;
     }
