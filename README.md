@@ -21,3 +21,7 @@ All functionality will be secure behind the customer's pin before any transactio
 in the case of too many wrong login attempts.
 
 Extra functionality of a SQL Database or Swing GUI may be implemented depending on the project timeline.
+
+
+URL Link to our Powerpoint Presentation:
+https://tlgcohort-my.sharepoint.com/:p:/p/cameron_davis/EeF3J6u2QxlFuMn_DAhNTysBF8dijGcOd8fvxI2mjR_vDQ?e=rlBPK9
