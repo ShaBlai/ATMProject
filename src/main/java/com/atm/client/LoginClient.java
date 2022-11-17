@@ -1,6 +1,6 @@
 package com.atm.client;
 
-import com.atm.ATM.ATM;
+import com.atm.bank.ATM;
 import com.atm.bank.Bank;
 
 import java.util.Scanner;

@@ -55,19 +55,24 @@ public class Bank {
         return verificationBoolean;
     }
 
-    //Method to perform the Withdrawal from the User's Savings Account
-    public CustomerInfo withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
-        //Stream to comb through the customer database and compare card number with client input
+    private CustomerInfo authenticate(String cardNumberOfCorrectCustomer) {
         List<CustomerInfo> correctCustomer = userData.stream()
                 .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
                 .collect(Collectors.toList());
         CustomerInfo customerInfo = correctCustomer.get(0);
+        return  customerInfo;
+    }
+
+    //Method to perform the Withdrawal from the User's Savings Account
+    protected CustomerInfo withdrawFromSavings(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+        //Stream to comb through the customer database and compare card number with client input
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
         //Compares current Savings Balance to the requested withdrawal amount, withdraws it if possible,
         //and updates the savings balance
-        if (customerInfo.getCustomerSavingsBalance() >= withdrawalAmount) {
-            Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
+        if (authenticate.getCustomerSavingsBalance() >= withdrawalAmount) {
+            Double customerSavingsBalance = authenticate.getCustomerSavingsBalance();
             customerSavingsBalance -= withdrawalAmount;
-            customerInfo.setCustomerSavingsBalance(customerSavingsBalance);
+            authenticate.setCustomerSavingsBalance(customerSavingsBalance);
             System.out.format("You have withdrawn $%.2f from Savings. " +
                     "\nPlease take cash below. " +
                     "\nYour updated savings account balance is: $" +
@@ -76,22 +81,19 @@ public class Bank {
         } else {
             System.out.println("Insufficient funds in account.");
         }
-        return customerInfo;
+        return authenticate;
     }
 
     //Method to perform the Withdrawal from the User's Checking Account
-    public CustomerInfo withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
+    protected CustomerInfo withdrawFromChecking(String cardNumberOfCorrectCustomer, double withdrawalAmount) {
         //Stream to comb through the customer fields and compare card number with client input
-        List<CustomerInfo> correctCustomer = userData.stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo customerInfo = correctCustomer.get(0);
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
         //Compares current Checking Balance to the requested withdrawal amount, withdraws it if possible,
         //and updates the checking balance
-        if (customerInfo.getCustomerCheckingBalance() >= withdrawalAmount) {
-            Double customerCheckingBalance = customerInfo.getCustomerCheckingBalance();
+        if (authenticate.getCustomerCheckingBalance() >= withdrawalAmount) {
+            Double customerCheckingBalance = authenticate.getCustomerCheckingBalance();
             customerCheckingBalance -= withdrawalAmount;
-            customerInfo.setCustomerCheckingBalance(customerCheckingBalance);
+            authenticate.setCustomerCheckingBalance(customerCheckingBalance);
             System.out.format("You have withdrawn $%.2f from Checking. " +
                     "\nPlease take cash below. " +
                     "\nYour updated savings account balance is: $" +
@@ -100,64 +102,56 @@ public class Bank {
         } else {
             System.out.println("Insufficient funds in account.");
         }
-        return customerInfo;
+        return authenticate;
     }
 
     //Method to perform the Deposit to the User's Savings Account
-    public CustomerInfo depositToSavings(String cardNumberOfCorrectCustomer, double depositAmount) {
+    protected CustomerInfo depositToSavings(String cardNumberOfCorrectCustomer, double depositAmount) {
         //Similar stream logic as before
-        List<CustomerInfo> correctCustomer = userData.stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo correctCustomerInfo = correctCustomer.get(0);
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
         //Deposits the cash amount to the Savings and sets the updated account balance
-        Double customerSavingsBalance = correctCustomerInfo.getCustomerSavingsBalance();
+        Double customerSavingsBalance = authenticate.getCustomerSavingsBalance();
         customerSavingsBalance += depositAmount;
-        correctCustomerInfo.setCustomerSavingsBalance(customerSavingsBalance);
+        authenticate.setCustomerSavingsBalance(customerSavingsBalance);
         //Result showing the deposit and new savings balance to user
         System.out.format("You have deposited $%.2f into your Savings account. " +
                 "\nYour updated account balance is: $" +
                 customerSavingsBalance + ".\n\n", depositAmount);
 
-        return correctCustomerInfo;
+        return authenticate;
     }
 
     //Method to perform the Deposit to the User's Checking Account
-    public CustomerInfo depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
+    protected CustomerInfo depositToChecking(String cardNumberOfCorrectCustomer, double depositAmount) {
         //Similar stream logic as before
-        List<CustomerInfo> correctCustomer = userData.stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo correctCustomerInfo = correctCustomer.get(0);
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
         //similar deposit logic as before
-        Double customerCurrentCheckingBalance = correctCustomerInfo.getCustomerCheckingBalance();
+        Double customerCurrentCheckingBalance = authenticate.getCustomerCheckingBalance();
         customerCurrentCheckingBalance += depositAmount;
-        correctCustomerInfo.setCustomerCheckingBalance(customerCurrentCheckingBalance);
+        authenticate.setCustomerCheckingBalance(customerCurrentCheckingBalance);
         //Result showing the deposit and new checking balance to user
         System.out.format("You have deposited $%.2f into your Checking account. " +
                 "\nYour updated account balance is: $" +
                 customerCurrentCheckingBalance + ".\n\n", depositAmount);
 
-        return correctCustomerInfo;
+        return authenticate;
     }
 
     //Method to perform the Transfer from User's Checking Account to Savings Account
-    public CustomerInfo transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
+    protected CustomerInfo transferFromChecking(String cardNumberOfCorrectCustomer, double transferAmount) {
         //similar stream logic as before
-        List<CustomerInfo> correctCustomerTransfer = userData.stream()
-                .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
+
         //Verifies if the transfer amount is possible, then executes the transfer
-        if (customerInfoTransfer.getCustomerCheckingBalance() >= transferAmount) {
-            Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
-            Double customerSavingsBalance = customerInfoTransfer.getCustomerSavingsBalance();
+        if (authenticate.getCustomerCheckingBalance() >= transferAmount) {
+            Double customerCheckingBalance = authenticate.getCustomerCheckingBalance();
+            Double customerSavingsBalance = authenticate.getCustomerSavingsBalance();
             //Subtracts from checking balance and changes balance accordingly
             customerCheckingBalance -= transferAmount;
-            customerInfoTransfer.setCustomerCheckingBalance(customerCheckingBalance);
+            authenticate.setCustomerCheckingBalance(customerCheckingBalance);
             //Adds the transfer amount to the savings balance
             customerSavingsBalance += transferAmount;
-            customerInfoTransfer.setCustomerSavingsBalance(customerSavingsBalance);
+            authenticate.setCustomerSavingsBalance(customerSavingsBalance);
 
             //Result showing the transfer and new savings balance to user
             System.out.format("You have transferred $%.2f to Savings " +
@@ -167,26 +161,23 @@ public class Bank {
             System.out.println("You cannot transfer this amount, insufficient funds to transfer.");
         }
 
-        return customerInfoTransfer;
+        return authenticate;
     }
 
     //Method to perform the Transfer from User's Savings Account to Checking Account
-    public CustomerInfo transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
+    protected CustomerInfo transferFromSavings(String cardNumberOfCorrectCustomer, double transferAmount) {
         //similar stream logic as before
-        List<CustomerInfo> correctCustomerTransfer = userData.stream()
-                .filter(customerInfoTransfer -> customerInfoTransfer.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo customerInfoTransfer = correctCustomerTransfer.get(0);
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
         //verifies if transfer amount is possible, then executes it
-        if (customerInfoTransfer.getCustomerSavingsBalance() >= transferAmount) {
-            Double customerSavingsBalance = customerInfoTransfer.getCustomerSavingsBalance();
-            Double customerCheckingBalance = customerInfoTransfer.getCustomerCheckingBalance();
+        if (authenticate.getCustomerSavingsBalance() >= transferAmount) {
+            Double customerSavingsBalance = authenticate.getCustomerSavingsBalance();
+            Double customerCheckingBalance = authenticate.getCustomerCheckingBalance();
             //subtracts from savings balance and updates that balance
             customerSavingsBalance -= transferAmount;
-            customerInfoTransfer.setCustomerSavingsBalance(customerSavingsBalance);
+            authenticate.setCustomerSavingsBalance(customerSavingsBalance);
             //adds transferred amount to checking
             customerCheckingBalance += (transferAmount);
-            customerInfoTransfer.setCustomerCheckingBalance(customerCheckingBalance);
+            authenticate.setCustomerCheckingBalance(customerCheckingBalance);
             //result shown if transfer successful
             System.out.format("You have transferred $%.2f to Checking " +
                     "\nYour new Checking account balance is: $" + customerCheckingBalance + ".\n\n", transferAmount);
@@ -195,39 +186,31 @@ public class Bank {
             System.out.println("You cannot transfer this amount, insufficient funds to transfer");
         }
 
-        return customerInfoTransfer;
+        return authenticate;
     }
 
     //Method to perform the Balance Inquiry of the User's Checking Account
-    public CustomerInfo displayCustomerCheckingBalance(String cardNumberOfCorrectCustomer) {
-        List<CustomerInfo> correctCustomer = userData.stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo correctCustomerInfo = correctCustomer.get(0);
+    protected CustomerInfo displayCustomerCheckingBalance(String cardNumberOfCorrectCustomer) {
 
-
-        Double customerCheckingBalance = correctCustomerInfo.getCustomerCheckingBalance();
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
+        Double customerCheckingBalance = authenticate.getCustomerCheckingBalance();
         System.out.println("Your checking balance is $" + customerCheckingBalance);
 
-        return correctCustomerInfo;
+        return authenticate;
     }
 
     //Method to perform the Balance Inquiry of the User's Savings Account
-    public CustomerInfo displayCustomerSavingBalance(String cardNumberOfCorrectCustomer) {
-        List<CustomerInfo> correctCustomer = userData.stream()
-                .filter(customerInfo -> customerInfo.getCustomerCardNumber().equals(cardNumberOfCorrectCustomer))
-                .collect(Collectors.toList());
-        CustomerInfo customerInfo = correctCustomer.get(0);
+    protected CustomerInfo displayCustomerSavingBalance(String cardNumberOfCorrectCustomer) {
+        CustomerInfo authenticate = authenticate(cardNumberOfCorrectCustomer);
 
-
-        Double customerSavingsBalance = customerInfo.getCustomerSavingsBalance();
+        Double customerSavingsBalance = authenticate.getCustomerSavingsBalance();
         System.out.println("Your savings balance is $" + customerSavingsBalance);
 
-        return customerInfo;
+        return authenticate;
     }
 
 
-    public List<CustomerInfo> getUserData() {
+    protected List<CustomerInfo> getUserData() {
         return userData;
     }
 }
