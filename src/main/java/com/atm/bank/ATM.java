@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class ATM {
 
     //defines menu options for scanner
-    private static final String Withdrawal = "1";
-    private static final String Deposit = "2";
-    private static final String Balance_Inquiry = "3";
-    private static final String Transfer = "4";
-    private static final String Checking = "5";
-    private static final String Savings = "6";
-    private static final String Exit = "0";
+    private static final String Withdrawal = "[1]";
+    private static final String Deposit = "[2]";
+    private static final String Balance_Inquiry = "[3]";
+    private static final String Transfer = "[4]";
+    private static final String Checking = "[5]";
+    private static final String Savings = "[6]";
+    private static final String Exit = "[0]";
 
 
     //Singleton implementation of the ATM Instances to assist with data encapsulation
@@ -35,17 +35,21 @@ public class ATM {
         Scanner scan = new Scanner(System.in);
         //Beginning of Menu for User Input
         while (true) {
-            System.out.println("Select " + Withdrawal + " for Withdrawal");
+            System.out.print("Select " + Withdrawal + " for Withdrawal");
+            System.out.print("          ");
             System.out.println("Select " + Deposit + " for Deposit");
-            System.out.println("Select " + Balance_Inquiry + " for Balance Inquiry");
+            System.out.print("Select " + Balance_Inquiry + " for Balance Inquiry");
+            System.out.print("     ");
             System.out.println("Select " + Transfer + " for Transfer Funds");
             System.out.println("Select " + Exit + " to Exit");
             String options = scan.nextLine();
             switch (options) {
                 //Withdrawal Method if User Selects "1" in Menu
                 case "1":
-                    System.out.println("Would you like to withdraw " +
-                            "from Savings enter: " + Savings + " or Checking enter: " + Checking);
+                    System.out.println("Would you like to withdraw from: ");
+                    System.out.print("Savings " +Savings);
+                    System.out.print("      ");
+                    System.out.print("Checking " +Checking);
                     String input = scan.nextLine();
                     //Savings Withdrawal if user Selects "6"
                     if (input.equals("6")) {
@@ -81,8 +85,11 @@ public class ATM {
                     break;
                 //Deposit case if user selects "2"
                 case "2":
-                    System.out.println("Would you like to deposit in Savings" +
-                            " enter: " + Savings + " or Checking enter: " + Checking);
+                    System.out.println("Would you like to deposit in:");
+                    System.out.print("Savings " +Savings);
+                    System.out.print("      ");
+                    System.out.print("Checking " +Checking);
+                    System.out.println(" ");
                     input = scan.nextLine();
                     //Savings Deposit if user selects "6"
                     if (input.equals("6")) {
@@ -118,8 +125,11 @@ public class ATM {
                     break;
                 //Balance Inquiry Case if User selects "3"
                 case "3":
-                    System.out.println("Select the account type you'd like to display" +
-                            " Savings enter: " + Savings + " or Checking enter: " + Checking);
+                    System.out.println("Select the account type you'd like to display");
+                    System.out.print("Savings " +Savings);
+                    System.out.print("      ");
+                    System.out.print("Checking " +Checking);
+                    System.out.println(" ");
                     input = scan.nextLine();
                     //Balance of Savings is displayed if User selects "6"
                     if (input.equals("6")) {
@@ -131,7 +141,11 @@ public class ATM {
                     break;
                 //Transfer case if user selects "4"
                 case "4":
-                    System.out.println("Choose bank account type: enter 5 for Checking or 6 for Savings ");
+                    System.out.println("Choose bank account type:");
+                    System.out.print("Savings " +Savings);
+                    System.out.print("      ");
+                    System.out.print("Checking " +Checking);
+                    System.out.println(" ");
                     input = scan.nextLine();
                     //Checking Transfer To Savings if user selects "5"
                     if (input.equals("5")) {

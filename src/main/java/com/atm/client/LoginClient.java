@@ -33,6 +33,9 @@ public class LoginClient {
         Scanner myObj = new Scanner(System.in);
         //Menu takes the Card number and Pin from user, then verifies if the user correctly provided login credentials
         do {
+            System.out.println("                ATM           ");
+            System.out.println("-----------------------------------");
+            System.out.println(" ");
             System.out.println("Please enter your 4 digit card number: ");
             cardNumberUserProvided = myObj.nextLine();
 
